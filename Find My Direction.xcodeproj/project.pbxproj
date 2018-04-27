@@ -1,0 +1,423 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6D42921A2093573700909CAE /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4292192093573700909CAE /* UIColor.swift */; };
+		6D92C37320934C7E00379237 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D92C37220934C7E00379237 /* AppDelegate.swift */; };
+		6D92C37520934C7E00379237 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D92C37420934C7E00379237 /* ViewController.swift */; };
+		6D92C37820934C7E00379237 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D92C37620934C7E00379237 /* Main.storyboard */; };
+		6D92C37A20934C7E00379237 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D92C37920934C7E00379237 /* Assets.xcassets */; };
+		6D92C37D20934C7E00379237 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D92C37B20934C7E00379237 /* LaunchScreen.storyboard */; };
+		6D92C38520934D0A00379237 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 6D92C38420934D0A00379237 /* Podfile */; };
+		C8F09E876FF597E08FF3E9A7 /* Pods_Find_My_Direction.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A050832848E008367E277D5 /* Pods_Find_My_Direction.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2A050832848E008367E277D5 /* Pods_Find_My_Direction.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Find_My_Direction.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D4292192093573700909CAE /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		6D92C36F20934C7E00379237 /* Find My Direction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Find My Direction.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D92C37220934C7E00379237 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6D92C37420934C7E00379237 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6D92C37720934C7E00379237 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6D92C37920934C7E00379237 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6D92C37C20934C7E00379237 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6D92C37E20934C7E00379237 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6D92C38420934D0A00379237 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		718073A583B4C4484CABDC17 /* Pods-Find My Direction.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Find My Direction.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Find My Direction/Pods-Find My Direction.debug.xcconfig"; sourceTree = "<group>"; };
+		EFE4AE723B7B1BB897720414 /* Pods-Find My Direction.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Find My Direction.release.xcconfig"; path = "Pods/Target Support Files/Pods-Find My Direction/Pods-Find My Direction.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6D92C36C20934C7E00379237 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8F09E876FF597E08FF3E9A7 /* Pods_Find_My_Direction.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3D989C5A433057CE0008EB27 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				718073A583B4C4484CABDC17 /* Pods-Find My Direction.debug.xcconfig */,
+				EFE4AE723B7B1BB897720414 /* Pods-Find My Direction.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6D92C36620934C7E00379237 = {
+			isa = PBXGroup;
+			children = (
+				6D92C38420934D0A00379237 /* Podfile */,
+				6D92C37120934C7E00379237 /* Find My Direction */,
+				6D92C37020934C7E00379237 /* Products */,
+				3D989C5A433057CE0008EB27 /* Pods */,
+				96E2B8BA1EE10764C8D5BCDF /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6D92C37020934C7E00379237 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6D92C36F20934C7E00379237 /* Find My Direction.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6D92C37120934C7E00379237 /* Find My Direction */ = {
+			isa = PBXGroup;
+			children = (
+				6D92C37220934C7E00379237 /* AppDelegate.swift */,
+				6D92C37420934C7E00379237 /* ViewController.swift */,
+				6D92C37620934C7E00379237 /* Main.storyboard */,
+				6D92C37920934C7E00379237 /* Assets.xcassets */,
+				6D92C37B20934C7E00379237 /* LaunchScreen.storyboard */,
+				6D92C37E20934C7E00379237 /* Info.plist */,
+				6D4292192093573700909CAE /* UIColor.swift */,
+			);
+			path = "Find My Direction";
+			sourceTree = "<group>";
+		};
+		96E2B8BA1EE10764C8D5BCDF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2A050832848E008367E277D5 /* Pods_Find_My_Direction.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6D92C36E20934C7E00379237 /* Find My Direction */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D92C38120934C7E00379237 /* Build configuration list for PBXNativeTarget "Find My Direction" */;
+			buildPhases = (
+				A491D24DCC76F1F4C49EE111 /* [CP] Check Pods Manifest.lock */,
+				6D92C36B20934C7E00379237 /* Sources */,
+				6D92C36C20934C7E00379237 /* Frameworks */,
+				6D92C36D20934C7E00379237 /* Resources */,
+				10F832C3898BD1D32E94B93E /* [CP] Embed Pods Frameworks */,
+				22568D7CC984B216F355722C /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Find My Direction";
+			productName = "Find My Direction";
+			productReference = 6D92C36F20934C7E00379237 /* Find My Direction.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6D92C36720934C7E00379237 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = Algorithm;
+				TargetAttributes = {
+					6D92C36E20934C7E00379237 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 6D92C36A20934C7E00379237 /* Build configuration list for PBXProject "Find My Direction" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6D92C36620934C7E00379237;
+			productRefGroup = 6D92C37020934C7E00379237 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6D92C36E20934C7E00379237 /* Find My Direction */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6D92C36D20934C7E00379237 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D92C37D20934C7E00379237 /* LaunchScreen.storyboard in Resources */,
+				6D92C37A20934C7E00379237 /* Assets.xcassets in Resources */,
+				6D92C38520934D0A00379237 /* Podfile in Resources */,
+				6D92C37820934C7E00379237 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		10F832C3898BD1D32E94B93E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Find My Direction/Pods-Find My Direction-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Find My Direction/Pods-Find My Direction-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		22568D7CC984B216F355722C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Find My Direction/Pods-Find My Direction-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Find My Direction/Pods-Find My Direction-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A491D24DCC76F1F4C49EE111 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Find My Direction-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6D92C36B20934C7E00379237 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D92C37520934C7E00379237 /* ViewController.swift in Sources */,
+				6D42921A2093573700909CAE /* UIColor.swift in Sources */,
+				6D92C37320934C7E00379237 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6D92C37620934C7E00379237 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6D92C37720934C7E00379237 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6D92C37B20934C7E00379237 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6D92C37C20934C7E00379237 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6D92C37F20934C7E00379237 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6D92C38020934C7E00379237 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6D92C38220934C7E00379237 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 718073A583B4C4484CABDC17 /* Pods-Find My Direction.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XU385D6UF5;
+				INFOPLIST_FILE = "Find My Direction/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "co.Algorithm.Find-My-Direction";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6D92C38320934C7E00379237 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EFE4AE723B7B1BB897720414 /* Pods-Find My Direction.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XU385D6UF5;
+				INFOPLIST_FILE = "Find My Direction/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "co.Algorithm.Find-My-Direction";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6D92C36A20934C7E00379237 /* Build configuration list for PBXProject "Find My Direction" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D92C37F20934C7E00379237 /* Debug */,
+				6D92C38020934C7E00379237 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D92C38120934C7E00379237 /* Build configuration list for PBXNativeTarget "Find My Direction" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D92C38220934C7E00379237 /* Debug */,
+				6D92C38320934C7E00379237 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6D92C36720934C7E00379237 /* Project object */;
+}
