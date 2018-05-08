@@ -34,6 +34,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
   var destinationLocation: CLLocationCoordinate2D?
   
   @IBOutlet weak var mapView: GMSMapView!
+  var placesCoord = [CLLocation]()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -73,6 +74,10 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
       Place(name: "اتوبوس شریعتی بالا", long: 51.44519, lat: 35.73200, color: UIColor.gray),
       Place(name: "اتوبوس ترکمنستان", long: 51.43945, lat: 35.71879, color: UIColor.gray)
     ]
+    
+    for place in places {
+      placesCoord.append(CLLocation(latitude: place.lat, longitude: place.long))
+    }
     
     // Create a GMSCameraPosition that tells the map to display the
     let camera = GMSCameraPosition.camera(withLatitude: 35.723407, longitude: 51.443528, zoom: 13.0)
@@ -138,6 +143,13 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
       startLocation = coordinate
       marker.icon = GMSMarker.markerImage(with: UIColor.cyan)
       marker.map = mapView
+      
+      var startLocation2 = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+      
+      let closest = placesCoord.min(by:
+      { $0.distance(from: startLocation2) < $1.distance(from: startLocation2) })
+      
+      print(closest)
     }
     
   }
