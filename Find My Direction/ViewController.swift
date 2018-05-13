@@ -33,15 +33,34 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
   var startLocation: CLLocationCoordinate2D?
   var destinationLocation: CLLocationCoordinate2D?
   
+  let locationManager = CLLocationManager()
+  
   @IBOutlet weak var mapView: GMSMapView!
+  var places = [Place]()
   var placesCoord = [CLLocation]()
+  
+  var startPlaceColor: UIColor?
+  
+  let lightBlue = UIColor(hexString: "#72bcd4")
+  
+  //MARK: - Refresh map
+  @IBAction func refreshButtonTapped(_ sender: Any) {
+    mapView.clear()
+    createMarkersOnMap()
+    isStart = false
+    isEnd = false
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let lightBlue = UIColor(hexString: "#72bcd4")
+    //Permission for location
+    locationManager.delegate = self
+    locationManager.requestWhenInUseAuthorization()
+    locationManager.requestAlwaysAuthorization()
     
-    let places = [
+    //Fill Places array
+    places = [
       //Subways
       Place(name: "مترو سبلان", long: 51.46456 , lat: 35.71864, color: UIColor.blue),
       Place(name: "مترو شهید مدنی", long: 51.45336 , lat: 35.70929, color: UIColor.blue),
@@ -75,6 +94,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
       Place(name: "اتوبوس ترکمنستان", long: 51.43945, lat: 35.71879, color: UIColor.gray)
     ]
     
+    //Fill the Second Array (ViewDidLoad)
     for place in places {
       placesCoord.append(CLLocation(latitude: place.lat, longitude: place.long))
     }
@@ -86,7 +106,12 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     mapView.isMyLocationEnabled = true
     mapView.settings.myLocationButton = true
     
-    //Create markers
+    //Create markers on Map
+    createMarkersOnMap()
+  }
+  
+  //MARK: - a function to create buss and subway markers on map
+  func createMarkersOnMap() {
     for place in places {
       let marker = GMSMarker()
       marker.position = CLLocationCoordinate2D(latitude: place.lat, longitude: place.long)
@@ -94,6 +119,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
       marker.snippet = "Hey, this is \(place.name)"
       marker.icon = GMSMarker.markerImage(with: place.color)
       marker.map = mapView
+      marker.appearAnimation = .pop
     }
   }
   
@@ -124,34 +150,73 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
   
   func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
     
+    //Destination Marker
     if isStart && !isEnd {
       isEnd = true
       
       let marker = GMSMarker()
       marker.position = coordinate
-      destinationLocation = coordinate
       marker.icon = GMSMarker.markerImage(with: UIColor.brown)
       marker.map = mapView
+      
+      let endLocation2 = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+      
+      placesCoord.removeAll()
+      
+      if startPlaceColor == UIColor.blue || startPlaceColor == lightBlue || startPlaceColor == UIColor.red {
+        for place in places {
+          if place.color != UIColor.gray {
+            placesCoord.append(CLLocation(latitude: place.lat, longitude: place.long))
+          }
+        }
+      } else {
+        for place in places {
+          if place.color == UIColor.gray {
+            placesCoord.append(CLLocation(latitude: place.lat, longitude: place.long))
+          }
+        }
+      }
+      
+      guard let closest = placesCoord.min(by:
+        { $0.distance(from: endLocation2) < $1.distance(from: endLocation2) }) else {
+          return
+      }
+      
+      destinationLocation = CLLocationCoordinate2D(latitude: closest.coordinate.latitude, longitude: closest.coordinate.longitude)
+      
     }
     
-    
+    //Start Marker
     if !isStart {
       isStart = true
       
       let marker = GMSMarker()
       marker.position = coordinate
-      startLocation = coordinate
       marker.icon = GMSMarker.markerImage(with: UIColor.cyan)
       marker.map = mapView
       
-      var startLocation2 = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+      let startLocation2 = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
       
-      let closest = placesCoord.min(by:
-      { $0.distance(from: startLocation2) < $1.distance(from: startLocation2) })
+      guard let closest = placesCoord.min(by:
+        { $0.distance(from: startLocation2) < $1.distance(from: startLocation2) }) else {
+          return
+      }
       
-      print(closest)
+      startPlaceColor = returnColorOFLocation(lat: closest.coordinate.latitude, long: closest.coordinate.longitude)
+      
+      startLocation = CLLocationCoordinate2D(latitude: closest.coordinate.latitude, longitude: closest.coordinate.longitude)
+      
     }
     
+  }
+  
+  func returnColorOFLocation(lat: Double, long: Double) -> UIColor {
+    for place in places {
+      if place.lat == lat && place.long == long {
+        return place.color
+      }
+    }
+    return UIColor.white
   }
   
   func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
@@ -190,7 +255,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
           polyline.map = self.mapView
         }
       }
-      
     }
   }
 }
