@@ -176,10 +176,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving&key=AIzaSyCKq1LT6NcG6-CYwxiJ7kV6Q3Jp80cpAVQ"
     
     Alamofire.request(url).responseJSON { response in
-//      print(response.request)  // original URL request
-//      print(response.response) // HTTP URL response
-//      print(response.data)     // server data
-      print(response.result)   // result of response serialization
+      print(response.result)
       
       if let json = try? JSON(data: response.data!) {
         let routes = json["routes"].arrayValue
