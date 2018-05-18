@@ -103,6 +103,10 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     mapView.clear()
     createMarkersOnMap()
     routes.removeAll()
+    placesCoord.removeAll()
+    for place in places {
+      placesCoord.append(CLLocation(latitude: place.lat, longitude: place.long))
+    }
     isStart = false
     isEnd = false
   }
