@@ -95,7 +95,7 @@ nodeB.connections.append(Connection(to: nodeE, weight: 1))
 nodeE.connections.append(Connection(to: nodeC, weight: 1))
 
 let sourceNode = nodeA
-let destinationNode = nodeC
+let destinationNode = nodeB
 
 var path = shortestPath(source: sourceNode, destination: destinationNode)
 
