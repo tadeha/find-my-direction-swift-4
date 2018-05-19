@@ -1,22 +1,16 @@
 PODS:
-  - Alamofire (4.5.1)
   - GoogleMaps (2.5.0):
     - GoogleMaps/Maps (= 2.5.0)
   - GoogleMaps/Base (2.5.0)
   - GoogleMaps/Maps (2.5.0):
     - GoogleMaps/Base
-  - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
-  - Alamofire
   - GoogleMaps
-  - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
-  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 3cf31f21ef22f2aab67f6d562880af2f79f15add
+PODFILE CHECKSUM: d0e1081dc269db3fc637e0299691840b36adadfd
 
 COCOAPODS: 1.3.1

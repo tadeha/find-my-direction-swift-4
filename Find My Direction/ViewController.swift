@@ -74,29 +74,27 @@ class Place: Node {
   }
 }
 
+let lightBlue = UIColor(hexString: "#72bcd4")
+
 class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
   
   var isStart = false
   var isEnd = false
   
-  
-  //Ar Methode
   var startLocation: CLLocationCoordinate2D?
   var destinationLocation: CLLocationCoordinate2D?
-  var placesCoord = [CLLocation]()
   var estimatedTime = 0
   var startPlace: Place?
   var destPlace: Place?
+  var startPlaceColor: UIColor?
+  
+  var places = [Place]()
+  var placesCoord = [CLLocation]()
+  var routes = [CLLocationCoordinate2D]()
   
   let locationManager = CLLocationManager()
   
   @IBOutlet weak var mapView: GMSMapView!
-  var places = [Place]()
-  var routes = [CLLocationCoordinate2D]()
-  
-  var startPlaceColor: UIColor?
-  
-  let lightBlue = UIColor(hexString: "#72bcd4")
   
   //MARK: - Refresh map
   @IBAction func refreshButtonTapped(_ sender: Any) {
@@ -160,10 +158,12 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     sohrevardiSub.connections.append(Connection(to: beheshtiSub, weight: 5))
     beheshtiSub.connections.append(Connection(to: sohrevardiSub, weight: 5))
     beheshtiSub.connections.append(Connection(to: mofatehSub, weight: 5))
+    
     //Line 1 - Sub
     mofatehSub.connections.append(Connection(to: hafteTirSub, weight: 5))
     hafteTirSub.connections.append(Connection(to: taleghaniSub, weight: 5))
     hafteTirSub.connections.append(Connection(to: mofatehBus, weight: 5))
+    
     // Busses
     moalemBus.connections.append(Connection(to: marvdashtBus, weight: 3))
     marvdashtBus.connections.append(Connection(to: motahariBus, weight: 3))
@@ -228,6 +228,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     createMarkersOnMap()
   }
   
+  //MARK: - create a one button alert
   func createOneButtonAlert(title: String,message: String, actionTitle: String) {
     let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
     
@@ -250,13 +251,11 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
   }
   
   //MARK: - Location Manager delegates
-  
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     print("Error to get location : \(error)")
   }
   
   // MARK: - GMSMapViewDelegate
-  
   func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
     mapView.isMyLocationEnabled = true
   }
@@ -282,7 +281,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
       
       let marker = GMSMarker()
       marker.position = coordinate
-      marker.icon = GMSMarker.markerImage(with: UIColor.brown)
+      marker.icon = UIImage(named: "dest")
       marker.map = mapView
       
       let endLocation2 = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
@@ -318,7 +317,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
       
       let marker = GMSMarker()
       marker.position = coordinate
-      marker.icon = GMSMarker.markerImage(with: UIColor.cyan)
+      marker.icon = UIImage(named: "start")
       marker.map = mapView
       
       let startLocation2 = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
@@ -335,6 +334,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     }
   }
   
+  //MARK: - Dijkstra’s Algorithm Shortest Path Function
   func shortestPath(source: Node, destination: Node) -> Path? {
     var frontier: [Path] = [] {
       didSet { frontier.sort { return $0.cumulativeWeight < $1.cumulativeWeight } }
@@ -396,7 +396,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     guard let start = startPlace, let dest = destPlace else {
       return
     }
-    //self.drawPath(startLocation: start, endLocation: dest)
     
     let sourceNode = start
     let destinationNode = dest
@@ -415,10 +414,15 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     
     if let succession: [String] = path?.array.reversed().flatMap({ $0 as? Place}).map({$0.name}) {
       drawPath()
-      createOneButtonAlert(title: "مدت زمان تخمینی:", message: "\(String(describing: estimatedTime)) دقیقه", actionTitle: "ممنون")
-      print("Quickest path: \(succession)")
+      var routesString = ""
+      for route in succession {
+        routesString += route
+        routesString += "\n"
+      }
+      createOneButtonAlert(title: "مسیر پیدا شد", message: "زمان تخمینی : \(String(describing: estimatedTime)) دقیقه \n مسیر پیشنهادی: \n  \(routesString)", actionTitle: "ممنون")
+      
     } else {
-      print("No path between \(sourceNode.name) & \(destinationNode.name)")
+      createOneButtonAlert(title: "مسیر پیدا نشد", message: "مسیری بین \(sourceNode.name) و \(destinationNode.name) پیدا نشد!", actionTitle: "اکی")
     }
     
   }
@@ -426,14 +430,12 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
   //MARK: - this is function for create direction path, from start location to desination location
   func drawPath()
   {
-    
     let path = GMSMutablePath()
     for route in routes {
       path.add(route)
     }
     let polyline = GMSPolyline(path: path)
     polyline.map = mapView
-    
   }
+  
 }
-

@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="WebYekan.ttf">
+            <string>WebYekan</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Delegate-->
         <scene sceneID="tne-QT-ifu">
@@ -31,6 +36,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="fo0-m8-baH"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="WebYekan" family="Web Yekan" pointSize="17"/>
                                 <state key="normal" title="مسیریابی کن">
                                     <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -52,7 +58,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="iWN-9f-WwY">
+                        <barButtonItem key="leftBarButtonItem" title="راهنما" id="UZs-Z3-LfZ">
+                            <color key="tintColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="EYE-oY-s0f" kind="show" id="uN2-hZ-OWg"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="GCu-7w-99d">
+                            <color key="tintColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="refreshButtonTapped:" destination="BYZ-38-t0r" id="9v1-pq-gR5"/>
                             </connections>
@@ -65,6 +78,94 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="476" y="99.400299850074973"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="EtY-QD-fGI">
+            <objects>
+                <viewController id="EYE-oY-s0f" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rmy-H2-buQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="EWE-kv-uGs">
+                                <rect key="frame" x="40" y="114" width="295" height="403"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ibn-UA-3GC">
+                                        <rect key="frame" x="0.0" y="0.0" width="295" height="86"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iOs-qe-Xro">
+                                                <rect key="frame" x="0.0" y="0.0" width="137.5" height="86"/>
+                                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="خطوط مترو خط ۱" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ilT-6S-eAR">
+                                                <rect key="frame" x="157.5" y="0.0" width="137.5" height="86"/>
+                                                <fontDescription key="fontDescription" name="WebYekan" family="Web Yekan" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5Jq-RU-SYK">
+                                        <rect key="frame" x="0.0" y="106" width="295" height="85.5"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O2z-A2-2S5">
+                                                <rect key="frame" x="0.0" y="0.0" width="137.5" height="85.5"/>
+                                                <color key="backgroundColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="خطوط مترو خط ۲" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDQ-29-Csd">
+                                                <rect key="frame" x="157.5" y="0.0" width="137.5" height="85.5"/>
+                                                <fontDescription key="fontDescription" name="WebYekan" family="Web Yekan" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sjy-Ze-ey8">
+                                        <rect key="frame" x="0.0" y="211.5" width="295" height="86"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BGf-5s-gqp">
+                                                <rect key="frame" x="0.0" y="0.0" width="137.5" height="86"/>
+                                                <color key="backgroundColor" red="0.0" green="0.73725490199999999" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="خطوط مترو خط ۳" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3e-Ke-pVP">
+                                                <rect key="frame" x="157.5" y="0.0" width="137.5" height="86"/>
+                                                <fontDescription key="fontDescription" name="WebYekan" family="Web Yekan" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="DGX-PQ-unC">
+                                        <rect key="frame" x="0.0" y="317.5" width="295" height="85.5"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="72f-Gr-9oE">
+                                                <rect key="frame" x="0.0" y="0.0" width="137.5" height="85.5"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="خطوط اتوبوس" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ucu-7U-QLE">
+                                                <rect key="frame" x="157.5" y="0.0" width="137.5" height="85.5"/>
+                                                <fontDescription key="fontDescription" name="WebYekan" family="Web Yekan" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="KTS-q1-kAh" firstAttribute="bottom" secondItem="EWE-kv-uGs" secondAttribute="bottom" constant="150" id="Ec3-4S-Dfd"/>
+                            <constraint firstItem="EWE-kv-uGs" firstAttribute="top" secondItem="KTS-q1-kAh" secondAttribute="top" constant="50" id="UXf-nh-YF5"/>
+                            <constraint firstItem="KTS-q1-kAh" firstAttribute="trailing" secondItem="EWE-kv-uGs" secondAttribute="trailing" constant="40" id="ea2-rH-wRh"/>
+                            <constraint firstItem="EWE-kv-uGs" firstAttribute="leading" secondItem="KTS-q1-kAh" secondAttribute="leading" constant="40" id="w3S-iv-Hbq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KTS-q1-kAh"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8BZ-oR-rXS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1181.5999999999999" y="98.50074962518741"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DqS-C8-mhd">

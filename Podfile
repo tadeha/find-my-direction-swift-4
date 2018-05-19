@@ -3,7 +3,5 @@ target 'Find My Direction' do
     use_frameworks!
     
 pod 'GoogleMaps'
-pod 'SwiftyJSON'
-pod 'Alamofire'
 
 end
