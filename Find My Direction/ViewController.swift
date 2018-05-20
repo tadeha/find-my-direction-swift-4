@@ -96,17 +96,12 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
   
   @IBOutlet weak var mapView: GMSMapView!
   
-  //MARK: - Refresh map
+  //MARK: - Refresh app
   @IBAction func refreshButtonTapped(_ sender: Any) {
-    mapView.clear()
-    createMarkersOnMap()
-    routes.removeAll()
-    placesCoord.removeAll()
-    for place in places {
-      placesCoord.append(CLLocation(latitude: place.lat, longitude: place.long))
-    }
-    isStart = false
-    isEnd = false
+    //reload application data (renew root view )
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let controller = storyboard.instantiateViewController(withIdentifier: "Root_View")
+    UIApplication.shared.keyWindow?.rootViewController = controller
   }
   
   override func viewDidLoad() {
@@ -160,25 +155,44 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     beheshtiSub.connections.append(Connection(to: mofatehSub, weight: 5))
     
     //Line 1 - Sub
+    mofatehSub.connections.append(Connection(to: beheshtiSub, weight: 5))
     mofatehSub.connections.append(Connection(to: hafteTirSub, weight: 5))
+    hafteTirSub.connections.append(Connection(to: mofatehSub, weight: 5))
     hafteTirSub.connections.append(Connection(to: taleghaniSub, weight: 5))
-    hafteTirSub.connections.append(Connection(to: mofatehBus, weight: 5))
+    taleghaniSub.connections.append(Connection(to: hafteTirSub, weight: 5))
     
     // Busses
     moalemBus.connections.append(Connection(to: marvdashtBus, weight: 3))
-    marvdashtBus.connections.append(Connection(to: motahariBus, weight: 3))
+    moalemBus.connections.append(Connection(to: ghodoosiBus, weight: 3))
+    ghodoosiBus.connections.append(Connection(to: moalemBus, weight: 3))
     ghodoosiBus.connections.append(Connection(to: upShariatiBus, weight: 3))
+    marvdashtBus.connections.append(Connection(to: moalemBus, weight: 3))
+    marvdashtBus.connections.append(Connection(to: motahariBus, weight: 3))
+    motahariBus.connections.append(Connection(to: marvdashtBus, weight: 3))
+    motahariBus.connections.append(Connection(to: downShariatyBus, weight: 3))
     upShariatiBus.connections.append(Connection(to: northSohrevardiBus, weight: 3))
+    upShariatiBus.connections.append(Connection(to: ghodoosiBus, weight: 3))
+    northSohrevardiBus.connections.append(Connection(to: upShariatiBus, weight: 3))
     northSohrevardiBus.connections.append(Connection(to: hoveyzeBus, weight: 3))
+    ghandiBus.connections.append(Connection(to: hoveyzeBus, weight: 3))
     hoveyzeBus.connections.append(Connection(to: ghandiBus, weight: 3))
     hoveyzeBus.connections.append(Connection(to: parsaBus, weight: 3))
+    parsaBus.connections.append(Connection(to: hoveyzeBus, weight: 3))
     parsaBus.connections.append(Connection(to: beheshtiBus, weight: 3))
     beheshtiBus.connections.append(Connection(to: mofatehBus, weight: 3))
+    beheshtiBus.connections.append(Connection(to: parsaBus, weight: 3))
+    mofatehBus.connections.append(Connection(to: beheshtiBus, weight: 3))
     mofatehBus.connections.append(Connection(to: southSohrevardiBus, weight: 3))
+    southSohrevardiBus.connections.append(Connection(to: mofatehBus, weight: 3))
     southSohrevardiBus.connections.append(Connection(to: malayeriPoorBus, weight: 3))
+    malayeriPoorBus.connections.append(Connection(to: southSohrevardiBus, weight: 3))
     malayeriPoorBus.connections.append(Connection(to: bahareShirazBus, weight: 3))
+    bahareShirazBus.connections.append(Connection(to: malayeriPoorBus, weight: 3))
     bahareShirazBus.connections.append(Connection(to: downShariatyBus, weight: 3))
     downShariatyBus.connections.append(Connection(to: torkamanestanBus, weight: 3))
+    downShariatyBus.connections.append(Connection(to: bahareShirazBus, weight: 3))
+    torkamanestanBus.connections.append(Connection(to: downShariatyBus, weight: 3))
+    torkamanestanBus.connections.append(Connection(to: motahariBus, weight: 3))
     
     //Fill Places array
     places = [

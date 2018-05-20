@@ -170,7 +170,7 @@
         <!--Navigation Controller-->
         <scene sceneID="DqS-C8-mhd">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lpR-7a-HWJ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Root_View" automaticallyAdjustsScrollViewInsets="NO" id="lpR-7a-HWJ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fzP-L3-eJG">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
