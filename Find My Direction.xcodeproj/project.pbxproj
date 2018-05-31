@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D006F5F20C03959000D1B87 /* SubwayStations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D006F5E20C03959000D1B87 /* SubwayStations.plist */; };
 		6D42921A2093573700909CAE /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4292192093573700909CAE /* UIColor.swift */; };
 		6D5E27F120B00E5500B09CF9 /* WebYekan.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5E27F020B00E5500B09CF9 /* WebYekan.ttf */; };
 		6D92C37320934C7E00379237 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D92C37220934C7E00379237 /* AppDelegate.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		2A050832848E008367E277D5 /* Pods_Find_My_Direction.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Find_My_Direction.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D006F5E20C03959000D1B87 /* SubwayStations.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SubwayStations.plist; sourceTree = "<group>"; };
 		6D4292192093573700909CAE /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		6D5E27F020B00E5500B09CF9 /* WebYekan.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = WebYekan.ttf; sourceTree = "<group>"; };
 		6D92C36F20934C7E00379237 /* Find My Direction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Find My Direction.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,6 +57,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6D006F6020C03968000D1B87 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6D5E27F020B00E5500B09CF9 /* WebYekan.ttf */,
+				6D006F5E20C03959000D1B87 /* SubwayStations.plist */,
+				6D92C37920934C7E00379237 /* Assets.xcassets */,
+				6D4292192093573700909CAE /* UIColor.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		6D92C36620934C7E00379237 = {
 			isa = PBXGroup;
 			children = (
@@ -80,11 +93,9 @@
 				6D92C37220934C7E00379237 /* AppDelegate.swift */,
 				6D92C37420934C7E00379237 /* ViewController.swift */,
 				6D92C37620934C7E00379237 /* Main.storyboard */,
-				6D92C37920934C7E00379237 /* Assets.xcassets */,
 				6D92C37B20934C7E00379237 /* LaunchScreen.storyboard */,
 				6D92C37E20934C7E00379237 /* Info.plist */,
-				6D4292192093573700909CAE /* UIColor.swift */,
-				6D5E27F020B00E5500B09CF9 /* WebYekan.ttf */,
+				6D006F6020C03968000D1B87 /* Resources */,
 			);
 			path = "Find My Direction";
 			sourceTree = "<group>";
@@ -163,6 +174,7 @@
 				6D92C37A20934C7E00379237 /* Assets.xcassets in Resources */,
 				6D92C38520934D0A00379237 /* Podfile in Resources */,
 				6D92C37820934C7E00379237 /* Main.storyboard in Resources */,
+				6D006F5F20C03959000D1B87 /* SubwayStations.plist in Resources */,
 				6D5E27F120B00E5500B09CF9 /* WebYekan.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

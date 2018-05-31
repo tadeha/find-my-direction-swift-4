@@ -92,6 +92,10 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
   var placesCoord = [CLLocation]()
   var routes = [CLLocationCoordinate2D]()
   
+  var usersCurrentLocation: CLLocation?
+  
+  var busses = [Place]()
+  
   let locationManager = CLLocationManager()
   
   @IBOutlet weak var mapView: GMSMapView!
@@ -111,6 +115,11 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     locationManager.delegate = self
     locationManager.requestWhenInUseAuthorization()
     locationManager.requestAlwaysAuthorization()
+    
+    if CLLocationManager.locationServicesEnabled() {
+      locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+      locationManager.startUpdatingLocation()
+    }
     
     let sabalanSub = Place(name: "مترو سبلان", long: 51.46456 , lat: 35.71864, color: UIColor.blue)
     let madaniSub = Place(name: "مترو شهید مدنی", long: 51.45336 , lat: 35.70929, color: UIColor.blue)
@@ -208,6 +217,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
       hafteTirSub,
       taleghaniSub,
       //Busses
+      
       ghandiBus,
       hoveyzeBus,
       beheshtiBus,
@@ -224,6 +234,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
       bahareShirazBus,
       downShariatyBus,
       upShariatiBus
+ 
     ]
     
     //Fill the Second Array (ViewDidLoad)
@@ -238,8 +249,15 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     mapView.isMyLocationEnabled = true
     mapView.settings.myLocationButton = true
     
+    if let usersLocation = usersCurrentLocation {
+      getGoogleMapBusses(lat: usersLocation.coordinate.latitude, lon: usersLocation.coordinate.longitude)
+    } else {
+      getGoogleMapBusses(lat: 35.7090476, lon: 51.445041)
+    }
+    
     //Create markers on Map
-    createMarkersOnMap()
+    createMarkersOnMap(places: places)
+    //createMarkersOnMap(places: busses)
   }
   
   //MARK: - create a one button alert
@@ -251,8 +269,47 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     self.present(alert, animated: true, completion: nil)
   }
   
+  //MARK: - a function to get busses from Google Map
+  func getGoogleMapBusses(lat: Double, lon: Double) {
+    //let urlpath = "https://maps.googleapis.com/maps/api/geocode/json?address=tadeh&sensor=false".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+    
+    let urlpath = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=\(googleApiKey)&location=\(lat),\(lon)&radius=50000&types=bus_station".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+    
+    let url = URL(string: urlpath!)
+    
+    let task = URLSession.shared.dataTask(with: url! as URL) { (data, response, error) -> Void in
+
+      do {
+        if data != nil{
+          let dic = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+          
+          for number in 0..<(dic.value(forKey: "results") as! NSArray).count-1 {
+            let lat =   (((((dic.value(forKey: "results") as! NSArray).object(at: number) as! NSDictionary).value(forKey: "geometry") as! NSDictionary).value(forKey: "location") as! NSDictionary).value(forKey: "lat")) as! Double
+            
+            let lon =   (((((dic.value(forKey: "results") as! NSArray).object(at: number) as! NSDictionary).value(forKey: "geometry") as! NSDictionary).value(forKey: "location") as! NSDictionary).value(forKey: "lng")) as! Double
+            
+            let vicinity =   (((dic.value(forKey: "results") as! NSArray).object(at: number) as! NSDictionary).value(forKey: "vicinity")) as! String
+            
+            self.busses.append(Place(name: vicinity, long: lon, lat: lat, color: UIColor.gray))
+          }
+          
+          for bus in self.busses {
+            print(bus.name)
+          }
+          
+          //self.delegate.locateWithLongitude(lon, andLatitude: lat, andTitle: self.searchResults[indexPath.row])
+        }
+        
+      }catch {
+        print("Error")
+      }
+    }
+
+    task.resume()
+  }
+  
   //MARK: - a function to create buss and subway markers on map
-  func createMarkersOnMap() {
+  func createMarkersOnMap(places: [Place]) {
     for place in places {
       let marker = GMSMarker()
       marker.position = CLLocationCoordinate2D(latitude: place.lat, longitude: place.long)
@@ -267,6 +324,11 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
   //MARK: - Location Manager delegates
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     print("Error to get location : \(error)")
+  }
+  
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+    usersCurrentLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
   }
   
   // MARK: - GMSMapViewDelegate
