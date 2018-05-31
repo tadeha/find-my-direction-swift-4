@@ -9,74 +9,10 @@
 import UIKit
 import GoogleMaps
 
-class Node {
-  var visited = false
-  var connections: [Connection] = []
-}
-
-class Connection {
-  public let to: Node
-  public let weight: Int
-  
-  public init(to node: Node, weight: Int) {
-    assert(weight >= 0, "weight has to be equal or greater than zero")
-    self.to = node
-    self.weight = weight
-  }
-}
-
-class Path {
-  public let cumulativeWeight: Int
-  public let node: Node
-  public let previousPath: Path?
-  
-  init(to node: Node, via connection: Connection? = nil, previousPath path: Path? = nil) {
-    if
-      let previousPath = path,
-      let viaConnection = connection {
-      self.cumulativeWeight = viaConnection.weight + previousPath.cumulativeWeight
-    } else {
-      self.cumulativeWeight = 0
-    }
-    
-    self.node = node
-    self.previousPath = path
-  }
-}
-
-extension Path {
-  var array: [Node] {
-    var array: [Node] = [self.node]
-    
-    var iterativePath = self
-    while let path = iterativePath.previousPath {
-      array.append(path.node)
-      
-      iterativePath = path
-    }
-    
-    return array
-  }
-}
-
-class Place: Node {
-  let name: String
-  let long: Double
-  let lat: Double
-  let color: UIColor
-  
-  init(name:String,long:Double,lat:Double, color: UIColor) {
-    self.name = name
-    self.long = long
-    self.lat = lat
-    self.color = color
-    super.init()
-  }
-}
-
-let lightBlue = UIColor(hexString: "#72bcd4")
-
 class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
+  
+  // Variables Start
+  let locationManager = CLLocationManager()
   
   var isStart = false
   var isEnd = false
@@ -91,12 +27,10 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
   var places = [Place]()
   var placesCoord = [CLLocation]()
   var routes = [CLLocationCoordinate2D]()
-  
-  var usersCurrentLocation: CLLocation?
-  
   var busses = [Place]()
   
-  let locationManager = CLLocationManager()
+  var usersCurrentLocation: CLLocation?
+  // Variables End
   
   @IBOutlet weak var mapView: GMSMapView!
   
@@ -106,6 +40,12 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     let controller = storyboard.instantiateViewController(withIdentifier: "Root_View")
     UIApplication.shared.keyWindow?.rootViewController = controller
+  }
+  
+  //MARK: - this function creates a Bidirectional connection between 2 nodes
+  func createConnection(place1: Place, place2: Place, weight: Int) {
+    place1.connections.append(Connection(to: place2, weight: weight))
+    place2.connections.append(Connection(to: place1, weight: weight))
   }
   
   override func viewDidLoad() {
@@ -149,58 +89,38 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     let upShariatiBus = Place(name: "اتوبوس شریعتی بالا", long: 51.44519, lat: 35.73200, color: UIColor.gray)
     
     //Line 2 - Sub
-    sabalanSub.connections.append(Connection(to: madaniSub, weight: 5))
-    madaniSub.connections.append(Connection(to: imamHosseinSub, weight: 5))
-    madaniSub.connections.append(Connection(to: sabalanSub, weight: 5))
-    imamHosseinSub.connections.append(Connection(to: madaniSub, weight: 5))
+    createConnection(place1: sabalanSub, place2: madaniSub, weight: 5)
+    createConnection(place1: madaniSub, place2: imamHosseinSub, weight: 5)
     
     //Line 3 - Sub
-    sayadSub.connections.append(Connection(to: ghodoosiSub, weight: 5))
-    ghodoosiSub.connections.append(Connection(to: sayadSub, weight: 5))
-    ghodoosiSub.connections.append(Connection(to: sohrevardiSub, weight: 5))
-    sohrevardiSub.connections.append(Connection(to: ghodoosiSub, weight: 5))
-    sohrevardiSub.connections.append(Connection(to: beheshtiSub, weight: 5))
-    beheshtiSub.connections.append(Connection(to: sohrevardiSub, weight: 5))
-    beheshtiSub.connections.append(Connection(to: mofatehSub, weight: 5))
+    createConnection(place1: sayadSub, place2: ghodoosiSub, weight: 5)
+    createConnection(place1: ghodoosiSub, place2: sohrevardiSub, weight: 5)
+    createConnection(place1: sohrevardiSub, place2: beheshtiSub, weight: 5)
+    
+    createConnection(place1: beheshtiSub, place2: mofatehSub, weight: 5)
     
     //Line 1 - Sub
-    mofatehSub.connections.append(Connection(to: beheshtiSub, weight: 5))
-    mofatehSub.connections.append(Connection(to: hafteTirSub, weight: 5))
-    hafteTirSub.connections.append(Connection(to: mofatehSub, weight: 5))
-    hafteTirSub.connections.append(Connection(to: taleghaniSub, weight: 5))
-    taleghaniSub.connections.append(Connection(to: hafteTirSub, weight: 5))
+    createConnection(place1: mofatehSub, place2: hafteTirSub, weight: 5)
+    createConnection(place1: hafteTirSub, place2: taleghaniSub, weight: 5)
     
     // Busses
-    moalemBus.connections.append(Connection(to: marvdashtBus, weight: 3))
-    moalemBus.connections.append(Connection(to: ghodoosiBus, weight: 3))
-    ghodoosiBus.connections.append(Connection(to: moalemBus, weight: 3))
-    ghodoosiBus.connections.append(Connection(to: upShariatiBus, weight: 3))
-    marvdashtBus.connections.append(Connection(to: moalemBus, weight: 3))
-    marvdashtBus.connections.append(Connection(to: motahariBus, weight: 3))
-    motahariBus.connections.append(Connection(to: marvdashtBus, weight: 3))
-    motahariBus.connections.append(Connection(to: downShariatyBus, weight: 3))
-    upShariatiBus.connections.append(Connection(to: northSohrevardiBus, weight: 3))
-    upShariatiBus.connections.append(Connection(to: ghodoosiBus, weight: 3))
-    northSohrevardiBus.connections.append(Connection(to: upShariatiBus, weight: 3))
+    createConnection(place1: moalemBus, place2: marvdashtBus, weight: 3)
+    createConnection(place1: moalemBus, place2: ghodoosiBus, weight: 3)
+    createConnection(place1: marvdashtBus, place2: motahariBus, weight: 3)
+    createConnection(place1: ghodoosiBus, place2: upShariatiBus, weight: 3)
+    createConnection(place1: upShariatiBus, place2: northSohrevardiBus, weight: 3)
+    createConnection(place1: ghandiBus, place2: hoveyzeBus, weight: 3)
+    createConnection(place1: hoveyzeBus, place2: parsaBus, weight: 3)
+    createConnection(place1: parsaBus, place2: beheshtiBus, weight: 3)
+    createConnection(place1: beheshtiBus, place2: mofatehBus, weight: 3)
+    createConnection(place1: mofatehBus, place2: southSohrevardiBus, weight: 3)
+    createConnection(place1: southSohrevardiBus, place2: malayeriPoorBus, weight: 3)
+    createConnection(place1: malayeriPoorBus, place2: bahareShirazBus, weight: 3)
+    createConnection(place1: bahareShirazBus, place2: downShariatyBus, weight: 3)
+    createConnection(place1: downShariatyBus, place2: torkamanestanBus, weight: 3)
+    
     northSohrevardiBus.connections.append(Connection(to: hoveyzeBus, weight: 3))
-    ghandiBus.connections.append(Connection(to: hoveyzeBus, weight: 3))
-    hoveyzeBus.connections.append(Connection(to: ghandiBus, weight: 3))
-    hoveyzeBus.connections.append(Connection(to: parsaBus, weight: 3))
-    parsaBus.connections.append(Connection(to: hoveyzeBus, weight: 3))
-    parsaBus.connections.append(Connection(to: beheshtiBus, weight: 3))
-    beheshtiBus.connections.append(Connection(to: mofatehBus, weight: 3))
-    beheshtiBus.connections.append(Connection(to: parsaBus, weight: 3))
-    mofatehBus.connections.append(Connection(to: beheshtiBus, weight: 3))
-    mofatehBus.connections.append(Connection(to: southSohrevardiBus, weight: 3))
-    southSohrevardiBus.connections.append(Connection(to: mofatehBus, weight: 3))
-    southSohrevardiBus.connections.append(Connection(to: malayeriPoorBus, weight: 3))
-    malayeriPoorBus.connections.append(Connection(to: southSohrevardiBus, weight: 3))
-    malayeriPoorBus.connections.append(Connection(to: bahareShirazBus, weight: 3))
-    bahareShirazBus.connections.append(Connection(to: malayeriPoorBus, weight: 3))
-    bahareShirazBus.connections.append(Connection(to: downShariatyBus, weight: 3))
-    downShariatyBus.connections.append(Connection(to: torkamanestanBus, weight: 3))
-    downShariatyBus.connections.append(Connection(to: bahareShirazBus, weight: 3))
-    torkamanestanBus.connections.append(Connection(to: downShariatyBus, weight: 3))
+    motahariBus.connections.append(Connection(to: downShariatyBus, weight: 3))
     torkamanestanBus.connections.append(Connection(to: motahariBus, weight: 3))
     
     //Fill Places array
@@ -234,7 +154,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
       bahareShirazBus,
       downShariatyBus,
       upShariatiBus
- 
+      
     ]
     
     //Fill the Second Array (ViewDidLoad)
@@ -260,16 +180,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     //createMarkersOnMap(places: busses)
   }
   
-  //MARK: - create a one button alert
-  func createOneButtonAlert(title: String,message: String, actionTitle: String) {
-    let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-    
-    alert.addAction(UIAlertAction(title: actionTitle, style: UIAlertActionStyle.default, handler: nil))
-    
-    self.present(alert, animated: true, completion: nil)
-  }
-  
-  //MARK: - a function to get busses from Google Map
+  //MARK: - a function to get busses from Google Map (Will work in Open-Source Version)
   func getGoogleMapBusses(lat: Double, lon: Double) {
     //let urlpath = "https://maps.googleapis.com/maps/api/geocode/json?address=tadeh&sensor=false".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
     
@@ -278,7 +189,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     let url = URL(string: urlpath!)
     
     let task = URLSession.shared.dataTask(with: url! as URL) { (data, response, error) -> Void in
-
+      
       do {
         if data != nil{
           let dic = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
@@ -296,15 +207,13 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
           for bus in self.busses {
             print(bus.name)
           }
-          
-          //self.delegate.locateWithLongitude(lon, andLatitude: lat, andTitle: self.searchResults[indexPath.row])
         }
         
       }catch {
         print("Error")
       }
     }
-
+    
     task.resume()
   }
   
@@ -346,6 +255,12 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
   
   func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
     mapView.isMyLocationEnabled = true
+    return false
+  }
+  
+  func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
+    mapView.isMyLocationEnabled = true
+    mapView.selectedMarker = nil
     return false
   }
   
@@ -462,12 +377,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     return Place(name: "nil", long: 1, lat: 1, color: UIColor.white)
   }
   
-  func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
-    mapView.isMyLocationEnabled = true
-    mapView.selectedMarker = nil
-    return false
-  }
-  
   @IBAction func findButtonTapped(_ sender: Any) {
     guard let start = startPlace, let dest = destPlace else {
       return
@@ -495,10 +404,10 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         routesString += route
         routesString += "\n"
       }
-      createOneButtonAlert(title: "مسیر پیدا شد", message: "زمان تخمینی : \(String(describing: estimatedTime)) دقیقه \n مسیر پیشنهادی: \n  \(routesString)", actionTitle: "ممنون")
+      Helper.createOneButtonAlert(title: "مسیر پیدا شد", message: "زمان تخمینی : \(String(describing: estimatedTime)) دقیقه \n مسیر پیشنهادی: \n  \(routesString)", actionTitle: "ممنون", vc: self)
       
     } else {
-      createOneButtonAlert(title: "مسیر پیدا نشد", message: "مسیری بین \(sourceNode.name) و \(destinationNode.name) پیدا نشد!", actionTitle: "اکی")
+      Helper.createOneButtonAlert(title: "مسیر پیدا نشد", message: "مسیری بین \(sourceNode.name) و \(destinationNode.name) پیدا نشد!", actionTitle: "اکی", vc: self)
     }
     
   }

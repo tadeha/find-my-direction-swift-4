@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6D006F5F20C03959000D1B87 /* SubwayStations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D006F5E20C03959000D1B87 /* SubwayStations.plist */; };
 		6D42921A2093573700909CAE /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4292192093573700909CAE /* UIColor.swift */; };
+		6D5244BB20C09D40008788DB /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5244BA20C09D40008788DB /* Helper.swift */; };
+		6D5244BD20C0A0A6008788DB /* Constants+Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5244BC20C0A0A6008788DB /* Constants+Classes.swift */; };
 		6D5E27F120B00E5500B09CF9 /* WebYekan.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5E27F020B00E5500B09CF9 /* WebYekan.ttf */; };
 		6D92C37320934C7E00379237 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D92C37220934C7E00379237 /* AppDelegate.swift */; };
 		6D92C37520934C7E00379237 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D92C37420934C7E00379237 /* ViewController.swift */; };
@@ -23,6 +25,8 @@
 		2A050832848E008367E277D5 /* Pods_Find_My_Direction.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Find_My_Direction.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D006F5E20C03959000D1B87 /* SubwayStations.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SubwayStations.plist; sourceTree = "<group>"; };
 		6D4292192093573700909CAE /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		6D5244BA20C09D40008788DB /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		6D5244BC20C0A0A6008788DB /* Constants+Classes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+Classes.swift"; sourceTree = "<group>"; };
 		6D5E27F020B00E5500B09CF9 /* WebYekan.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = WebYekan.ttf; sourceTree = "<group>"; };
 		6D92C36F20934C7E00379237 /* Find My Direction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Find My Direction.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D92C37220934C7E00379237 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +67,7 @@
 				6D5E27F020B00E5500B09CF9 /* WebYekan.ttf */,
 				6D006F5E20C03959000D1B87 /* SubwayStations.plist */,
 				6D92C37920934C7E00379237 /* Assets.xcassets */,
+				6D5244BA20C09D40008788DB /* Helper.swift */,
 				6D4292192093573700909CAE /* UIColor.swift */,
 			);
 			path = Resources;
@@ -92,6 +97,7 @@
 			children = (
 				6D92C37220934C7E00379237 /* AppDelegate.swift */,
 				6D92C37420934C7E00379237 /* ViewController.swift */,
+				6D5244BC20C0A0A6008788DB /* Constants+Classes.swift */,
 				6D92C37620934C7E00379237 /* Main.storyboard */,
 				6D92C37B20934C7E00379237 /* LaunchScreen.storyboard */,
 				6D92C37E20934C7E00379237 /* Info.plist */,
@@ -246,6 +252,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D92C37520934C7E00379237 /* ViewController.swift in Sources */,
+				6D5244BB20C09D40008788DB /* Helper.swift in Sources */,
+				6D5244BD20C0A0A6008788DB /* Constants+Classes.swift in Sources */,
 				6D42921A2093573700909CAE /* UIColor.swift in Sources */,
 				6D92C37320934C7E00379237 /* AppDelegate.swift in Sources */,
 			);
