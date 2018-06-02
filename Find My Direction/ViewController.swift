@@ -170,8 +170,10 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     mapView.settings.myLocationButton = true
     
     if let usersLocation = usersCurrentLocation {
+      print("Detected user location")
       getGoogleMapBusses(lat: usersLocation.coordinate.latitude, lon: usersLocation.coordinate.longitude)
     } else {
+      print("Doesn't detect user location")
       getGoogleMapBusses(lat: 35.7090476, lon: 51.445041)
     }
     
@@ -203,10 +205,11 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
             
             self.busses.append(Place(name: vicinity, long: lon, lat: lat, color: UIColor.gray))
           }
-          
-          for bus in self.busses {
-            print(bus.name)
-          }
+          /*
+           for bus in self.busses {
+           print(bus.name)
+           }
+           */
         }
         
       }catch {
