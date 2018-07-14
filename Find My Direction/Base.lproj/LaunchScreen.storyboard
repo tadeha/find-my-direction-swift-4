@@ -47,19 +47,8 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="launchPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Cf2-ob-ua0">
-                                <rect key="frame" x="7" y="236.5" width="360" height="194"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="194" id="2uX-n7-Ock"/>
-                                    <constraint firstAttribute="width" constant="360" id="pOL-bQ-1Cn"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="Cf2-ob-ua0" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="M0A-BJ-EuH"/>
-                            <constraint firstItem="Cf2-ob-ua0" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ck0-fc-w0X"/>
-                        </constraints>
+                        <color key="backgroundColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -68,7 +57,4 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="launchPhoto" width="360" height="194"/>
-    </resources>
 </document>
